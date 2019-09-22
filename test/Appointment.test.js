@@ -51,6 +51,12 @@ describe("AppointmentsDayView", () => {
     expect(container.textContent).toMatch("Ashley");
   });
 
+  it("has a button element in each li", () => {
+    render(<AppointmentsDayView appointments={appointments} />);
+    expect(container.querySelectorAll("li > button")).toHaveLength(2);
+    expect(container.querySelectorAll("li > button")[0].type).toEqual("button");
+  });
+
   it("renders a div with the right id", () => {
     render(<AppointmentsDayView appointments={[]} />);
     expect(container.querySelector("div#appointmentsDayView")).not.toBeNull();
