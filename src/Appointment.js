@@ -18,5 +18,6 @@ export const AppointmentsDayView = ({ appointments }) => (
         </li>
       ))}
     </ol>
+    <p>There are no Personal Training sessions scheduled for today</p>
   </div>
 );
