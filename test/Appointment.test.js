@@ -29,8 +29,8 @@ describe("AppointmentsDayView", () => {
   let container;
   const today = new Date();
   const appointments = [
-    { startsAt: today.setHours(12, 0) },
-    { startsAt: today.setHours(13, 0) }
+    { startsAt: today.setHours(12, 0), client: { firstName: "Ashley" } },
+    { startsAt: today.setHours(13, 0), client: { firstName: "Jordan" } }
   ];
 
   beforeEach(() => {
@@ -44,6 +44,11 @@ describe("AppointmentsDayView", () => {
     expect(container.textContent).toMatch(
       "There are no Personal Training sessions scheduled for today"
     );
+  });
+
+  it("selects the first appointment by default", () => {
+    render(<AppointmentsDayView appointments={appointments} />);
+    expect(container.textContent).toMatch("Ashley");
   });
 
   it("renders a div with the right id", () => {
