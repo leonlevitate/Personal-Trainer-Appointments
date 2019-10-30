@@ -4,7 +4,8 @@
   "description": "Sports Therapy Appointments System",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,5 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "save": "^2.4.0"
-  },
-  "build": "webpack"
+  }
 }
