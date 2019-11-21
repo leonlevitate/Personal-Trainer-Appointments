@@ -5,7 +5,7 @@ import { Appointment, AppointmentsDayView } from "../src/AppointmentsDayView";
 
 describe("Appointment", () => {
   let container;
-  let client;
+  let client = {};
 
   beforeEach(() => {
     container = document.createElement("div");
@@ -13,16 +13,24 @@ describe("Appointment", () => {
 
   const render = component => ReactDOM.render(component, container);
 
+  const appointmentTable = () =>
+    container.querySelector("#appointmentView > table");
+
+  it("renders a table", () => {
+    render(<Appointment client={client} />);
+    expect(appointmentTable()).not.toBeNull();
+  });
+
   it("renders the client first name", () => {
     client = { firstName: "Ashley" };
     render(<Appointment client={client} />);
-    expect(container.textContent).toMatch("Ashley");
+    expect(appointmentTable().textContent).toMatch("Ashley");
   });
 
   it("renders another client first name", () => {
     client = { firstName: "Jordan" };
     render(<Appointment client={client} />);
-    expect(container.textContent).toMatch("Jordan");
+    expect(appointmentTable().textContent).toMatch("Jordan");
   });
 });
 
