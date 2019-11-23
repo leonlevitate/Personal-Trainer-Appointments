@@ -56,6 +56,26 @@ describe("Appointment", () => {
     render(<Appointment client={client} />);
     expect(appointmentTable().textContent).toMatch("234567890");
   });
+
+  it("renders the Personal Trainer name", () => {
+    render(<Appointment client={client} personalTrainer="Sam" />);
+    expect(appointmentTable().textContent).toMatch("Sam");
+  });
+
+  it("renders another Personal Trainer name", () => {
+    render(<Appointment client={client} personalTrainer="Joe" />);
+    expect(appointmentTable().textContent).toMatch("Joe");
+  });
+
+  it("renders the PT service", () => {
+    render(<Appointment client={client} service="Cardio" />);
+    expect(appointmentTable().textContent).toMatch("Cardio");
+  });
+
+  it("renders another PT service", () => {
+    render(<Appointment client={client} service="Induction" />);
+    expect(appointmentTable().textContent).toMatch("Induction");
+  });
 });
 
 describe("AppointmentsDayView", () => {
