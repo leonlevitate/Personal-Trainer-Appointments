@@ -76,15 +76,35 @@ describe("Appointment", () => {
     render(<Appointment client={client} service="Induction" />);
     expect(appointmentTable().textContent).toMatch("Induction");
   });
+
+  it("renders the appointments notes", () => {
+    render(<Appointment client={client} notes="abc" />);
+    expect(appointmentTable().textContent).toMatch("abc");
+  });
+
+  it("renders other appointment notes", () => {
+    render(<Appointment client={client} notes="def" />);
+    expect(appointmentTable().textContent).toMatch("def");
+  });
+
+  it("renders a heading with the time", () => {
+    const today = new Date();
+    const timestamp = today.setHours(9, 0, 0);
+    render(<Appointment client={client} startsAt={timestamp} />);
+    expect(container.querySelector("h3")).not.toBeNull();
+    expect(container.querySelector("h3").textContent).toEqual(
+      "Today’s appointment at 09:00"
+    );
+  });
 });
 
 describe("AppointmentsDayView", () => {
-  let container;
   const today = new Date();
   const appointments = [
     { startsAt: today.setHours(12, 0), client: { firstName: "Ashley" } },
     { startsAt: today.setHours(13, 0), client: { firstName: "Jordan" } }
   ];
+  let container;
 
   beforeEach(() => {
     container = document.createElement("div");
@@ -133,5 +153,18 @@ describe("AppointmentsDayView", () => {
     expect(container.querySelectorAll("li")).toHaveLength(2);
     expect(container.querySelectorAll("li")[0].textContent).toEqual("12:00");
     expect(container.querySelectorAll("li")[1].textContent).toEqual("13:00");
+  });
+
+  it("adds toggled class to button when selected", () => {
+    render(<AppointmentsDayView appointments={appointments} />);
+    const button = container.querySelectorAll("button")[1];
+    ReactTestUtils.Simulate.click(button);
+    expect(button.className).toMatch("toggled");
+  });
+
+  it("does not add toggled class if button is not selected", () => {
+    render(<AppointmentsDayView appointments={appointments} />);
+    const button = container.querySelectorAll("button")[1];
+    expect(button.className).not.toMatch("toggled");
   });
 });
