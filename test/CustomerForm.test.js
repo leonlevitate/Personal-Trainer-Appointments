@@ -6,11 +6,12 @@ describe("CustomerForm", () => {
   let render, container;
 
   beforeEach(() => {
+    const form = id => container.querySelector(`form[id="${id}"]`);
     ({ render, container } = createContainer());
 
     it("renders a form", () => {
       render(<CustomerForm />);
-      expect(container.querySelector('form[id="customer"]')).not.toBeNull();
+      expect(form("customer")).not.toBeNull();
     });
   });
 });
