@@ -6,8 +6,10 @@ describe("CustomerForm", () => {
   let render, container;
 
   beforeEach(() => {
-    const form = id => container.querySelector(`form[id="${id}"]`);
     ({ render, container } = createContainer());
+
+    const form = id => container.querySelector(`form[id="${id}"]`);
+    const field = form("customer").elements.firstName;
 
     it("renders a form", () => {
       render(<CustomerForm />);
@@ -16,7 +18,6 @@ describe("CustomerForm", () => {
 
     it("renders the first name field as a text box", () => {
       render(<CustomerForm />);
-      const field = form("customer").elements.firstName;
       expect(field).not.toBeNull();
       expect(field.tagName).toEqual("INPUT");
       expect(field.type).toEqual("text");
