@@ -22,5 +22,11 @@ describe("CustomerForm", () => {
       expect(field.tagName).toEqual("INPUT");
       expect(field.type).toEqual("text");
     });
+
+    it("includes the existing value for the first name", () => {
+      render(<CustomerForm firstName="Ashley" />);
+      const field = form("customer").elements.firstName;
+      expect(field.value).toEqual("Ashley");
+    });
   });
 });
