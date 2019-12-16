@@ -14,23 +14,31 @@ describe("CustomerForm", () => {
       expect(formElement).not.toBeNull();
       expect(formElement.tagName).toEqual("INPUT");
       expect(formElement.type).toEqual("text");
-    };
-
-    it("renders as a text box", () => {
-      render(<CustomerForm />);
-      expectToBeInputFieldOfTypeText(firstNameField());
+      const labelFor = formElement =>
+        container.querySelector(`label[for="${formElement}"]`);
+        
+        it('renders a label for the first name field', () => {
+            render(<CustomerForm />);
+            expect(labelFor('firstName')).not.toBeNull();
+            expect(labelFor('firstName').textContent).toEqual('First name');
+        });
+        
+        it("renders as a text box", () => {
+            render(<CustomerForm />);
+            expectToBeInputFieldOfTypeText(firstNameField());
+        });
+        
+        it("renders the first name field as a text box", () => {
+            render(<CustomerForm />);
+            expect(field).not.toBeNull();
+            expect(field.tagName).toEqual("INPUT");
+            expect(field.type).toEqual("text");
+        });
+        
+        it("includes the existing value for the first name", () => {
+            render(<CustomerForm firstName="Ashley" />);
+            expect(firstNameField().value).toEqual("Ashley");
+        });
     });
-
-    it("renders the first name field as a text box", () => {
-      render(<CustomerForm />);
-      expect(field).not.toBeNull();
-      expect(field.tagName).toEqual("INPUT");
-      expect(field.type).toEqual("text");
-    });
-
-    it("includes the existing value for the first name", () => {
-      render(<CustomerForm firstName="Ashley" />);
-      expect(firstNameField().value).toEqual("Ashley");
-    });
-  });
+  };
 });
