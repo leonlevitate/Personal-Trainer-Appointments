@@ -18,8 +18,7 @@ describe("CustomerForm", () => {
         container.querySelector(`label[for="${formElement}"]`);
         
         it('renders a label for the first name field', () => {
-            render(<CustomerForm />);
-            expect(labelFor('firstName')).not.toBeNull();
+            render();
             expect(labelFor('firstName').textContent).toEqual('First name');
         });
 
