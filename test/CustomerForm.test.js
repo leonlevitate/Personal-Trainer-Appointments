@@ -1,6 +1,7 @@
 import React from "react";
 import { createContainer } from "./domManipulators";
 import { CustomerForm } from "../src/CustomerForm";
+import ReactTestUtils from 'react-dom/test-utils';
 
 describe("CustomerForm", () => {
   let render, container;
