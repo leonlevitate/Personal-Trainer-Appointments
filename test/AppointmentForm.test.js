@@ -96,8 +96,8 @@ describe("AppointmentForm", () => {
       expect.hasAssertions();
       render(
         <AppointmentForm
-          service="Blow-dry"
-          onSubmit={({ service }) => expect(service).toEqual("Blow-dry")}
+          service="HIIT"
+          onSubmit={({ service }) => expect(service).toEqual("HIIT")}
         />
       );
       await ReactTestUtils.Simulate.submit(form("appointment"));
@@ -107,12 +107,12 @@ describe("AppointmentForm", () => {
       expect.hasAssertions();
       render(
         <AppointmentForm
-          service="Blow-dry"
-          onSubmit={({ service }) => expect(service).toEqual("Cut")}
+          service="HIIT"
+          onSubmit={({ service }) => expect(service).toEqual("Cardiovascular")}
         />
       );
       await ReactTestUtils.Simulate.change(field("service"), {
-        target: { value: "Cut", name: "service" }
+        target: { value: "Cardiovascular", name: "service" }
       });
       await ReactTestUtils.Simulate.submit(form("appointment"));
     });
