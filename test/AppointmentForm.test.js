@@ -129,7 +129,7 @@ describe("AppointmentForm", () => {
 
     it('renders a time slot for every half an hour between open and close times', () => {
       render(
-        <AppointmentForm salonOpensAt={9} salonClosesAt={11} />
+        <AppointmentForm gymOpensAt={9} gymClosesAt={11} />
       );
       const timesOfDay = timeSlotTable().querySelectorAll(
         'tbody >* th'
